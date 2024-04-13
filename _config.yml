@@ -15,7 +15,7 @@ description: > # the ">" symbol means to ignore newlines until "footer_text:"
 #   Photos from <a href="https://unsplash.com" target="_blank">Unsplash</a>.
 keywords: jekyll, jekyll-theme, academic-website, portfolio-website # add your own keywords or leave empty
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
-icon: brain.png  # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
+icon: brain.png # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
 url: https://evanwang02.github.io # the base hostname & protocol for your site
 baseurl: # the subpath of your site, e.g. /blog/. Leave blank for root
@@ -228,6 +228,12 @@ exclude:
   - README.md
   - readme_preview/
   - vendor
+  - cv.md
+  - repositories.md
+  - publications.md
+  - profiles.md
+  - news.md
+  - dropdown.md
 keep_files:
   - CNAME
   - .nojekyll
