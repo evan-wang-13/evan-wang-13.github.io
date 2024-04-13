@@ -228,12 +228,12 @@ exclude:
   - README.md
   - readme_preview/
   - vendor
-  - cv.md
-  - repositories.md
-  - publications.md
-  - profiles.md
-  - news.md
-  - dropdown.md
+  - _pages/cv.md
+  - _pages/repositories.md
+  - _pages/publications.md
+  - _pages/profiles.md
+  - _pages/news.md
+  - _pages/dropdown.md
 keep_files:
   - CNAME
   - .nojekyll
