@@ -18,11 +18,11 @@ Organize your courses by years, topics, or universities, however you like! -->
 | **cos302** | Math for Machine Learning and Numerical Computing | Teaching Assistant, 2023 |
 | **cos484** | Natural Language Processing | Teaching Assistant, 2024 | -->
 <table>
-  <tr>
+  <!-- <tr>
     <th style="padding-right: 20px;">Course Code</th>
     <th style="padding-right: 40px;">Course Title</th>
     <th>Role &amp; Year</th>
-  </tr>
+  </tr> -->
   <tr>
     <td style="padding-right: 20px;"><b>cos217</b></td>
     <td style="padding-right: 40px;">Programming Systems</td>
