@@ -2,7 +2,7 @@
 layout: page
 permalink: /teaching/
 title: teaching
-description: Materials for courses you taught. Replace this text with your description.
+description: Courses I've TA'd/graded for at Princeton.
 nav: true
 nav_order: 6
 ---
@@ -11,8 +11,7 @@ nav_order: 6
 
 Organize your courses by years, topics, or universities, however you like! -->
 
-# Teaching Assistant Experience
+<!-- ## Teaching Assistant Experience -->
 
-| Course Code | Course Title                     | Role & Semester                     |
-|-------------|----------------------------------|-------------------------------------|
-| cos217      | Programming Systems              | Grader, Spring 2022 |
+| cos217 | Programming Systems              | Grader, Spring 2022 |
+| cos484 | Natural Language Processing | Teaching Assistant, Spring 2024|
