@@ -14,7 +14,7 @@ horizontal: false
 <ul>
   <li><a href="https://evan-wang-13.github.io/assets/pdf/CompGPT.pdf">CompGPT: Probing the Compositional Understanding of Visual Language Models</a></li>
   <li><a href="https://evan-wang-13.github.io/assets/pdf/Interpretable_RL.pdf">Towards Interpretable Deep Reinforcement Learning: Extension and Limitations</a> - Brief description of Project 2.</li>
-  <li><a href="url-to-your-project-3">Project 3</a> - Brief description of Project 3.</li>
+  <li><a href="https://evan-wang-13.github.io/assets/pdf/Interpretable_RL.pdf">Project 3</a> - Brief description of Project 3.</li>
   <!-- Add more projects as needed -->
 </ul>
 
