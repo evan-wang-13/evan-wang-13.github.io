@@ -2,7 +2,7 @@
 layout: page
 title: projects
 permalink: /projects/
-description: A growing collection of your cool projects.
+description: Some of my research, either from classes or independent work.
 nav: true
 nav_order: 3
 display_categories: [work, fun]
@@ -14,8 +14,8 @@ horizontal: false
 <!-- Static list of projects -->
 <ul>
   <li><a href="https://evan-wang-13.github.io/assets/pdf/CompGPT.pdf">CompGPT: Probing the Compositional Understanding of Visual Language Models</a></li>
-  <li><a href="https://evan-wang-13.github.io/assets/pdf/Interpretable_RL.pdf">Towards Interpretable Deep Reinforcement Learning: Extension and Limitations</a> - Brief description of Project 2.</li>
-  <li><a href="https://evan-wang-13.github.io/assets/pdf/Interpretable_RL.pdf">Project 3</a> - Brief description of Project 3.</li>
+  <li><a href="https://evan-wang-13.github.io/assets/pdf/Interpretable_RL.pdf">Towards Interpretable Deep Reinforcement Learning: Extension and Limitations</a></li>
+  <li><a href="https://evan-wang-13.github.io/assets/pdf/ExpBERT.pdf">Improving ExpBERT: Representation Engineering with GPT-Generated, Natural Language Explanations</a></li>
   <!-- Add more projects as needed -->
 </ul>
 
