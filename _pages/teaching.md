@@ -18,28 +18,23 @@ Organize your courses by years, topics, or universities, however you like! -->
 | **cos302** | Math for Machine Learning and Numerical Computing | Teaching Assistant, 2023 |
 | **cos484** | Natural Language Processing | Teaching Assistant, 2024 | -->
 <table>
-  <!-- <tr>
-    <th style="padding-right: 20px;">Course Code</th>
-    <th style="padding-right: 40px;">Course Title</th>
-    <th>Role &amp; Year</th>
-  </tr> -->
   <tr>
-    <td style="padding-right: 20px;"><b>cos217</b></td>
+    <td style="padding-right: 20px;"><a href="https://www.cs.princeton.edu/courses/archive/spr22/cos217/" target="_blank"><b>cos217</b></a></td>
     <td style="padding-right: 40px;">Programming Systems</td>
     <td>Grader, 2022</td>
   </tr>
   <tr>
-    <td style="padding-right: 20px;"><b>cos324</b></td>
+    <td style="padding-right: 20px;"><a href="https://princeton-introml.github.io/index.html" target="_blank"><b>cos324</b></a></td>
     <td style="padding-right: 40px;">Intro to Machine Learning</td>
     <td>Teaching Assistant, 2022-2023</td>
   </tr>
   <tr>
-    <td style="padding-right: 20px;"><b>cos302</b></td>
-    <td style="padding-right: 40px;">Math for Machine Learning and Numerical Computing</td>
+    <td style="padding-right: 20px;"><a href="https://www.cs.princeton.edu/courses/archive/fall23/cos302/" target="_blank"><b>cos302</b></a></td>
+    <td style="padding-right: 40px;">Math for Numerical Computing</td>
     <td>Teaching Assistant, 2023</td>
   </tr>
   <tr>
-    <td style="padding-right: 20px;"><b>cos484</b></td>
+    <td style="padding-right: 20px;"><a href="https://princeton-nlp.github.io/cos484/" target="_blank"><b>cos484</b></a></td>
     <td style="padding-right: 40px;">Natural Language Processing</td>
     <td>Teaching Assistant, 2024</td>
   </tr>
