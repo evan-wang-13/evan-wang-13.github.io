@@ -11,7 +11,9 @@ This spring, I took my favorite class at Princeton: the seminar [Limits to Predi
 
 ## Meta-Level: Choosing What to Learn/Research
 
-- This involves a prediction task: what will be super important that is not receiving enough attention already?
+- Choosing what to focus on in learning and research is a prediction task in and of itself. What will be super important in the next few years (or decades) that is not receiving enough attention already?
+- Strongly-held weak beliefs vs. weakly-held strong beliefs. Strong-held weak beliefs are stances that may not push the envelope super far from established knowledge, but we can be relatively confident in that belief. These beliefs are more foundational than ground-breaking. Weakly-held strong beliefs are beliefs that are "hot takes" but have low confidence.
+  Both types of beliefs are important to have in the marketplace of ideas: diversity here is healthy. Matt describes himself as someone having strongly-held weak beliefs, while Arvind considers himself as having weakly-held strong beliefs.
 
 ## Evaluations are Everything
 
