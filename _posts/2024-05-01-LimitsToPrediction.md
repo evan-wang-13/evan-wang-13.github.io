@@ -7,30 +7,17 @@ description: What I learned from my favorite class at Princeton. Will continue t
 # categories: sample-posts
 ---
 
-This spring, I took the seminar [Limits to Prediction](https://msalganik.github.io/soc555-cos598J_s2024/), taught by Arvind Narayanan and Matt Salganik in a lecture-discussion format where both professors, along with students, would be able to respond to the presented material. The topics, open discussions, and view-altering takeaways from the class make it one of the best classes I've taken at Princeton.
+This spring, I took my favorite class at Princeton: the seminar [Limits to Prediction](https://msalganik.github.io/soc555-cos598J_s2024/), taught by Arvind Narayanan and Matt Salganik. lecture-discussion format where both professors, along with students, would be able to respond to the presented material. The topics, open discussions, and view-altering takeaway made this an eye-opening experience.
 
-#### Hipster list
+## Meta-Level: Choosing What to Learn/Research
 
-- brunch
-- fixie
-- raybans
-- messenger bag
+- This involves a prediction task: what will be super important that is not receiving enough attention already?
 
-#### Check List
+## Evaluations are Everything
 
-- [x] Brush Teeth
-- [ ] Put on socks
-  - [x] Put on left sock
-  - [ ] Put on right sock
-- [x] Go to school
+- Data Leakage and the ping-pong hacking theorem
+- Mismatch between training loss, performance evaluation, and what actually matters post-deployment. For example, for a classification model, we might use maximum likelihood estimation to find the models' parameters, some misclassification rate to evaluate the model, but in practice, what matters is some cost-weighted misclassification.
+- LLM- emergent abilities or a product of eval metric?
 
-Hoodie Thundercats retro, tote bag 8-bit Godard craft beer gastropub. Truffaut Tumblr taxidermy, raw denim Kickstarter sartorial dreamcatcher. Quinoa chambray slow-carb salvia readymade, bicycle rights 90's yr typewriter selfies letterpress cardigan vegan.
-
-<hr>
-
-Pug heirloom High Life vinyl swag, single-origin coffee four dollar toast taxidermy reprehenderit fap distillery master cleanse locavore. Est anim sapiente leggings Brooklyn ea. Thundercats locavore excepteur veniam eiusmod. Raw denim Truffaut Schlitz, migas sapiente Portland VHS twee Bushwick Marfa typewriter retro id keytar.
-
-> We do not grow absolutely, chronologically. We grow sometimes in one dimension, and not in another, unevenly. We grow partially. We are relative. We are mature in one realm, childish in another.
-> —Anais Nin
-
-Fap aliqua qui, scenester pug Echo Park polaroid irony shabby chic ex cardigan church-key Odd Future accusamus. Blog stumptown sartorial squid, gastropub duis aesthetic Truffaut vero. Pinterest tilde twee, odio mumblecore jean shorts lumbersexual.
+<!-- > We do not grow absolutely, chronologically. We grow sometimes in one dimension, and not in another, unevenly. We grow partially. We are relative. We are mature in one realm, childish in another.
+> —Anais Nin -->
