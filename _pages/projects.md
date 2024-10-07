@@ -16,7 +16,7 @@ horizontal: false
   <li><a href="https://evan-wang-13.github.io/assets/pdf/CompGPT.pdf">CompGPT: Probing the Compositional Understanding of Visual Language Models</a></li>
   <li><a href="https://evan-wang-13.github.io/assets/pdf/Interpretable_RL.pdf">Towards Interpretable Deep Reinforcement Learning: Extension and Limitations</a></li>
   <li><a href="https://evan-wang-13.github.io/assets/pdf/ExpBERT.pdf">Improving ExpBERT: Representation Engineering with GPT-Generated, Natural Language Explanations</a></li>
-  <li><a href="https://evan-wang-13.github.io/assets/pdf/RacialBiasCaption.pdf">Exploring Racial Bias in Modern Image Captioning Systems/a></li>
+  <li><a href="https://evan-wang-13.github.io/assets/pdf/RacialBiasCaption.pdf">Exploring Racial Bias in Modern Image Captioning Systems</a></li>
   <!-- Add more projects as needed -->
 </ul>
 
