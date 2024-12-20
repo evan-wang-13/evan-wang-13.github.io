@@ -23,4 +23,4 @@ social: false # includes social icons at the bottom of the page
 
 Hi! I'm a senior undergrad at Princeton University studying Computer Science, Statistics, and Machine Learning. Currently, I'm especially interested in creating more reliable and interpretable AI models, as well as mitigating the [reproducibility crisis](https://reproducible.cs.princeton.edu/). I'm also learning more about sustainable computing, technical debt, and reinforcement learning.
 
-When I'm not coding, I enjoy playing/watching basketball, [drawing](https://youtu.be/kE0FVAVx6tI), and working my way throuhg my [to-reads](https://www.goodreads.com/review/list/100007362?shelf=to-read).
+When I'm not coding, I enjoy playing/watching basketball, [drawing](https://www.youtube.com/watch?v=zP82Shm4WpY), and working through my [to-reads](https://www.goodreads.com/review/list/100007362?shelf=to-read).
