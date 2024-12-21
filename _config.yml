@@ -230,10 +230,10 @@ exclude:
   - vendor
   - _pages/cv.md
   - _pages/repositories.md
-  - _pages/publications.md
+  # - _pages/publications.md
   - _pages/profiles.md
   - _pages/news.md
-  - _pages/dropdown.md
+  # - _pages/dropdown.md
 keep_files:
   - CNAME
   - .nojekyll
