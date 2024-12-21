@@ -30,7 +30,7 @@ For a particularly illuminating example, let's look at the discussion over emerg
 
 2022 paper evaluated LLM performance on some popular benchmarks as a function of parameter size. Contrary to traditional scaling laws, models achieve random performance up to a certain scale, then improves-sharply and unpredictably. This is a pretty crucial finding. If models truly exhibit emergent abilities, that makes predicting their predictive power, abilities, and risks much harder. A bunch of steps and research would probably need to follow.
 
-But! A recent [paper](https://arxiv.org/abs/2304.15004) suggests this is not the full picture. "emergent abilities seem to appear only under metrics that nonlinearly or discontinuously scale any model's per-token error rate."
+But! A 2023 [paper](https://arxiv.org/abs/2304.15004) suggests this is not the full picture. "emergent abilities seem to appear only under metrics that nonlinearly or discontinuously scale any model's per-token error rate."
 
 Results of testing this hypothesis are shown below, taken from their paper.
 For completeness, the first column follows a simple mathematical model, where they assume cross entropy loss decreases monotonically with scale, and thus per-token probability of selecting the right token asymptotes towards 1.

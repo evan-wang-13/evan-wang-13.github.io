@@ -233,7 +233,7 @@ exclude:
   # - _pages/publications.md
   - _pages/profiles.md
   - _pages/news.md
-  # - _pages/dropdown.md
+  - _pages/dropdown.md
 keep_files:
   - CNAME
   - .nojekyll
