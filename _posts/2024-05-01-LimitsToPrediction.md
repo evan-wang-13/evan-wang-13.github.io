@@ -7,7 +7,7 @@ description: What I learned from my favorite class at Princeton. Will continue t
 # categories: sample-posts
 ---
 
-This spring, I took my favorite class at Princeton: the seminar [Limits to Prediction](https://msalganik.github.io/soc555-cos598J_s2024/), taught by Arvind Narayanan and Matt Salganik. lecture-discussion format where both professors, along with students, would be able to respond to the presented material. The topics, open discussions, and view-altering takeaway made this an eye-opening experience.
+This spring, I took my favorite class at Princeton: the seminar [Limits to Prediction](https://msalganik.github.io/soc555-cos598J_s2024/), taught by Arvind Narayanan and Matt Salganik. Limits to Prediction featured a lecture-discussion format where both professors, along with students, discussed and responded to presented material. The widely applicable takeaways--ranging from why we make predictions to the pitfalls of AI benchmarking--were extremely impactful for me. Here are my notes that I want to keep in mind throughout my academic career and beyond.
 
 ## Meta-Level: Choosing What to Learn/Research
 
