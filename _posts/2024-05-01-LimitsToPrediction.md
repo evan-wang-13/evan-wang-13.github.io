@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Limits to Prediction-Biggest Takeaways
+title: Limits to Prediction
 date: 2024-04-29
 description: What I learned from my favorite class at Princeton. Will continue to update as I parse through my notes.
 # tags: formatting links
