@@ -23,7 +23,7 @@ Matt describes himself as someone having strongly-held weak beliefs, while Arvin
 
 ## Evaluations are Everything
 
-- Data Leakage and the [ping-pong theorem](https://projecteuclid.org/journals/statistical-science/volume-21/issue-1/Classifier-Technology-and-the-Illusion-of-Progress/10.1214/088342306000000060.full). You can read more about data leakage [here](https://reproducible.cs.princeton.edu/).
+- Data Leakage and the [ping-pong theorem](https://arxiv.org/pdf/math.ST/0606441). You can read more about data leakage [here](https://reproducible.cs.princeton.edu/).
 - Crucially, there is often a mismatch between training loss, performance evaluation, and what actually matters post-deployment. For example, say we are using some classifcation model. We might use maximum likelihood estimation to find the models' parameters, some misclassification rate to evaluate the model, but in practice, what truly matters is a particular cost-weighted misclassification rate. It should be imperative to take time and ensure coherency here.
 
 For a particularly illuminating example, let's look at the discussion over emergent abilities of LLMS.

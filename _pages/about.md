@@ -21,6 +21,6 @@ social: true # includes social icons at the bottom of the page
 # Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
 ---
 
-Hi! I'm a senior undergrad at Princeton University studying Computer Science, Statistics, and Machine Learning. Currently, I'm especially interested in creating more reliable and interpretable AI models, as well as mitigating the [reproducibility crisis](https://reproducible.cs.princeton.edu/). I'm also learning more about sustainable computing, technical debt, and reinforcement learning.
+Hi! I'm a Master's Computer Science student at Cornell Tech, where I am focusing on machine learning and Natural Language Processing. Previously, I graduated from Princeton with a BSE in computer science. Currently, I'm particularly excited about conversational efficiency in language models, catching up on the inference-time-scaling literature, and mitigating the [reproducibility crisis](https://reproducible.cs.princeton.edu/).
 
 When I'm not coding, I enjoy playing/watching basketball, [drawing](https://www.youtube.com/watch?v=zP82Shm4WpY), and working through my [to-reads](https://www.goodreads.com/review/list/100007362?shelf=to-read).
