@@ -20,24 +20,20 @@
         <span class="c1"># Submodules
 </span>        <span class="n">self</span><span class="p">.</span><span class="n">sub_module_a</span> <span class="o">=</span> <span class="nc">OtherModule</span><span class="p">()</span>
         <span class="n">self</span><span class="p">.</span><span class="n">sub_module_b</span> <span class="o">=</span> <span class="nc">OtherModule</span><span class="p">()</span>
-</code></pre></div></div> <p>This is a simple toy example, but it illustrates how we might define useful modules like <code class="language-plaintext highlighter-rouge">Linear</code>, <code class="language-plaintext highlighter-rouge">Conv2d</code>, etc. In practice, this could look like a a ResNet module that contains convolutional and lienar submodules, with these submodules containing their own parameters (model weights).</p> <h2 id="part-2-autodiff">Part 2: Autodiff</h2> <p>The next part of the class is all about differentiation: how do we actually compute and store gradients for training?</p> <p>One approach we can take is symbolic differentiation, where we explicitly find the mathematical expression for the gradient of the function (as we would do in calculus class). This makes sense for simple functions like \(f(x) = x^2\), but becomes impractical for the more complex functions that would represent a neural network. Solving and storing such an expression explodes with model size.</p> <p>Another approach is numerical differentiation, where we approximate the gradient by altering inputs slightly and observing the change in output. The issue here is a) numerical instability due to approximation errors and b) we would need to compute the gradient for each parameter. We can imagine that for contemporary models with billions of parameters, this is impractical.</p> <p>To address these issues, automatic differentiation (autodiff) is the approach used in practice, which essentially collects information about every operation we perform in the forward pass, and uses this information to compute gradients in the backward pass. We can represent this collection and flow of information as a graph. With autodiff, we compute exact gradients like with symbolic differentiation, but we only need to evaluate each operation once (unlike numerical differentiation), since we store intermediate gradient accumulation values rather than entire expressions. Thus, autodiff is precise and scalable.</p> <pre><code class="language-mermaid">graph LR
-    x1[x = 2.0] --&gt; mul1[×]
-    x2[x = 2.0] --&gt; mul1
-    mul1 --&gt; add1[+]
-    x3[x = 2.0] --&gt; mul2[×]
-    x4[x = 2.0] --&gt; mul2
-    mul2 --&gt; add1
-    add1 --&gt; result[y = 8.0]
+</code></pre></div></div> <p>This is a simple toy example, but it illustrates how we might define useful modules like <code class="language-plaintext highlighter-rouge">Linear</code>, <code class="language-plaintext highlighter-rouge">Conv2d</code>, etc. In practice, this could look like a a ResNet module that contains convolutional and lienar submodules, with these submodules containing their own parameters (model weights).</p> <h2 id="part-2-autodiff">Part 2: Autodiff</h2> <p>The next part of the class is all about differentiation: how do we actually compute and store gradients for training?</p> <p>One approach we can take is symbolic differentiation, where we explicitly find the mathematical expression for the gradient of the function (as we would do in calculus class). This makes sense for simple functions like \(f(x) = x^2\), but becomes impractical for the more complex functions that would represent a neural network. Solving and storing such an expression explodes with model size.</p> <p>Another approach is numerical differentiation, where we approximate the gradient by altering inputs slightly and observing the change in output. The issue here is a) numerical instability due to approximation errors and b) we would need to compute the gradient for each parameter. We can imagine that for contemporary models with billions of parameters, this is impractical.</p> <p>To address these issues, automatic differentiation (autodiff) is the approach used in practice, which essentially collects information about every operation we perform in the forward pass, and uses this information to compute gradients in the backward pass. We can represent this collection and flow of information as a graph. I’ve seen nodes as functions and edges as values as well as the opposite; both perspectives are valid and the graph is simply a representation of how we organize the information.</p> <p>With autodiff, we compute exact gradients like with symbolic differentiation, but we only need to evaluate each operation once (unlike numerical differentiation), since we store intermediate gradient accumulation values rather than entire expressions. Thus, autodiff is precise and scalable.</p> <pre><code class="language-mermaid">sequenceDiagram
+    participant X as x = 2.0
+    participant Y as y = x * x
 
-    %% Add gradient flow
-    result -- ∂y/∂+ = 1.0 --&gt; add1
-    add1 -- ∂y/∂× = 1.0 --&gt; mul1
-    add1 -- ∂y/∂× = 1.0 --&gt; mul2
-    mul1 -- ∂y/∂x = 2.0 --&gt; x1
-    mul1 -- ∂y/∂x = 2.0 --&gt; x2
-    mul2 -- ∂y/∂x = 2.0 --&gt; x3
-    mul2 -- ∂y/∂x = 2.0 --&gt; x4
-</code></pre> <p>To do so in Python, we must override the default behavior of numbers and operators. To this end, we define proxy <code class="language-plaintext highlighter-rouge">Scalar</code> and <code class="language-plaintext highlighter-rouge">ScalarFunction</code> classes that allow us to remember what operators were used on what numbers.</p> <p>As an example, see how we define the multiplication operation:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Mul</span><span class="p">(</span><span class="n">ScalarFunction</span><span class="p">):</span>
+    X-&gt;&gt;Y: Forward: x = 2.0
+    Y-&gt;&gt;X: Backward: dy/dx = 2x = 4.0
+</code></pre> <pre><code class="language-mermaid">graph LR
+    x1[x = 2.0] --&gt;|multiply| y[y = 4.0]
+    x2[x = 2.0] --&gt;|multiply| y
+
+    %% Backward pass (gradient flow)
+    y --&gt;|dy/dx = 2.0| x1
+    y --&gt;|dy/dx = 2.0| x2
+</code></pre> <p>To do so in Python, we must override the default behavior of numbers and operators. To this end, we define proxy <code class="language-plaintext highlighter-rouge">Scalar</code> and <code class="language-plaintext highlighter-rouge">ScalarFunction</code> classes that allow us to remember what operators were used on what numbers.</p> <p>As an example, see how we define the multiplication operation. Note the usage of the context (ctx) variable to store values necessary for backpropagation:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Mul</span><span class="p">(</span><span class="n">ScalarFunction</span><span class="p">):</span>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="n">ctx</span><span class="p">.</span><span class="nf">save_for_backward</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
