@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://evan-wang-13.github.io/feed.xml" rel="self" type="application/atom+xml"/><link href="https://evan-wang-13.github.io/" rel="alternate" type="text/html" hreflang="en"/><updated>2024-12-25T02:59:03+00:00</updated><id>https://evan-wang-13.github.io/feed.xml</id><title type="html">blank</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design. </subtitle><entry><title type="html">Building MiniTorch</title><link href="https://evan-wang-13.github.io/blog/2024/MLE/" rel="alternate" type="text/html" title="Building MiniTorch"/><published>2024-12-21T00:00:00+00:00</published><updated>2024-12-21T00:00:00+00:00</updated><id>https://evan-wang-13.github.io/blog/2024/MLE</id><content type="html" xml:base="https://evan-wang-13.github.io/blog/2024/MLE/"><![CDATA[<p>In Machine Learning Engineering (MLE), taught by Prof. Sasha Rush, I built <a href="https://minitorch.github.io/">MiniTorch</a>, a ground-up implementation of PyTorch. Starting from basis scalar operations, I implemented a fully operational Python library for training and using neural networks.</p> <p>Getting to focus on the <em>engineering</em> side of Machine Learning Engineering was super cool. Now, when I call <code class="language-plaintext highlighter-rouge">torch.nn.Linear</code> or <code class="language-plaintext highlighter-rouge">loss.backward()</code>, I know what’s happening under the hood. These are my key takeaways! Note that I won’t be discussing the fundamental theory behind ML (e.g. why we want to find the gradient of the loss function), as this blog focuses on the <em>why</em> and <em>how</em> of engineering ML code.</p> <h2 id="part-1-fundamentals">Part 1: Fundamentals</h2> <p>Our goal is to implement code that allows us to train large neural networks. This requires keeping track of many parameters, as well as tracing operations to compute gradients.</p> <p>We do this by using a <code class="language-plaintext highlighter-rouge">Module</code> building block that is maintained in a tree structure. Each module stores its own parameters, as well as its submodules.</p> <p>Why a tree structure?</p> <ul> <li>Trees naturally represent hierarchical structures, which are common neural networks (layers building on top of each other)</li> <li>Trees allow us to easily represent parallel operations</li> <li>Components and their owned parameters are clearly defined, which is useful for debugging, memory management, gradient tracking etc.</li> </ul> <p>For our base <code class="language-plaintext highlighter-rouge">Module</code> class, we define attributes</p> <ul> <li><code class="language-plaintext highlighter-rouge">_modules</code>: Storage of the child modules</li> <li><code class="language-plaintext highlighter-rouge">_parameters</code>: Storage of the module’s parameters</li> <li><code class="language-plaintext highlighter-rouge">training</code>: Whether the module is in training mode or evaluation mode</li> </ul> <p>This class will also have functions to collect named parameters, submodules, etc. Another note: we use magic methods to override the default behavior of Python, such as custom <code class="language-plaintext highlighter-rouge">getattr</code> and <code class="language-plaintext highlighter-rouge">setattr</code> methods. We also have a <code class="language-plaintext highlighter-rouge">__call__</code> method that invokes any forward method we define.</p> <p>With this Module class, we can extend it to create our own custom modules. For example, we can create a <code class="language-plaintext highlighter-rouge">OtherModule</code> class that inherits from <code class="language-plaintext highlighter-rouge">Module</code>.</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">OtherModule</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://evan-wang-13.github.io/feed.xml" rel="self" type="application/atom+xml"/><link href="https://evan-wang-13.github.io/" rel="alternate" type="text/html" hreflang="en"/><updated>2024-12-25T19:04:15+00:00</updated><id>https://evan-wang-13.github.io/feed.xml</id><title type="html">blank</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design. </subtitle><entry><title type="html">Building MiniTorch</title><link href="https://evan-wang-13.github.io/blog/2024/MLE/" rel="alternate" type="text/html" title="Building MiniTorch"/><published>2024-12-21T00:00:00+00:00</published><updated>2024-12-21T00:00:00+00:00</updated><id>https://evan-wang-13.github.io/blog/2024/MLE</id><content type="html" xml:base="https://evan-wang-13.github.io/blog/2024/MLE/"><![CDATA[<p>In Machine Learning Engineering (MLE), taught by Prof. Sasha Rush, I built <a href="https://minitorch.github.io/">MiniTorch</a>, a ground-up implementation of PyTorch. Starting from basis scalar operations, I implemented a fully operational Python library for training and using neural networks.</p> <p>Getting to focus on the <em>engineering</em> side of Machine Learning Engineering was super cool. Now, when I call <code class="language-plaintext highlighter-rouge">torch.nn.Linear</code> or <code class="language-plaintext highlighter-rouge">loss.backward()</code>, I know what’s happening under the hood. These are my key takeaways! Note that I won’t be discussing the fundamental theory behind ML (e.g. why we want to find the gradient of the loss function), as this blog focuses on the <em>why</em> and <em>how</em> of engineering ML code.</p> <h2 id="part-1-fundamentals">Part 1: Fundamentals</h2> <p>Our goal is to implement code that allows us to train large neural networks. This requires keeping track of many parameters, as well as tracing operations to compute gradients.</p> <p>We do this by using a <code class="language-plaintext highlighter-rouge">Module</code> building block that is maintained in a tree structure. Each module stores its own parameters, as well as its submodules.</p> <p>Why a tree structure?</p> <ul> <li>Trees naturally represent hierarchical structures, which are common neural networks (layers building on top of each other)</li> <li>Trees allow us to easily represent parallel operations</li> <li>Components and their owned parameters are clearly defined, which is useful for debugging, memory management, gradient tracking etc.</li> </ul> <p>For our base <code class="language-plaintext highlighter-rouge">Module</code> class, we define attributes</p> <ul> <li><code class="language-plaintext highlighter-rouge">_modules</code>: Storage of the child modules</li> <li><code class="language-plaintext highlighter-rouge">_parameters</code>: Storage of the module’s parameters</li> <li><code class="language-plaintext highlighter-rouge">training</code>: Whether the module is in training mode or evaluation mode</li> </ul> <p>This class will also have functions to collect named parameters, submodules, etc. Another note: we use magic methods to override the default behavior of Python, such as custom <code class="language-plaintext highlighter-rouge">getattr</code> and <code class="language-plaintext highlighter-rouge">setattr</code> methods. We also have a <code class="language-plaintext highlighter-rouge">__call__</code> method that invokes any forward method we define.</p> <p>With this Module class, we can extend it to create our own custom modules. For example, we can create a <code class="language-plaintext highlighter-rouge">OtherModule</code> class that inherits from <code class="language-plaintext highlighter-rouge">Module</code>.</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">OtherModule</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
         <span class="c1"># Must initialize the super class!
 </span>        <span class="nf">super</span><span class="p">().</span><span class="nf">__init__</span><span class="p">()</span>
@@ -20,36 +20,67 @@
         <span class="c1"># Submodules
 </span>        <span class="n">self</span><span class="p">.</span><span class="n">sub_module_a</span> <span class="o">=</span> <span class="nc">OtherModule</span><span class="p">()</span>
         <span class="n">self</span><span class="p">.</span><span class="n">sub_module_b</span> <span class="o">=</span> <span class="nc">OtherModule</span><span class="p">()</span>
-</code></pre></div></div> <p>This is a simple toy example, but it illustrates how we might define useful modules like <code class="language-plaintext highlighter-rouge">Linear</code>, <code class="language-plaintext highlighter-rouge">Conv2d</code>, etc. In practice, this could look like a a ResNet module that contains convolutional and lienar submodules, with these submodules containing their own parameters (model weights).</p> <h2 id="part-2-autodiff">Part 2: Autodiff</h2> <p>The next part of the class is all about differentiation: how do we actually compute and store gradients for training?</p> <p>One approach we can take is symbolic differentiation, where we explicitly find the mathematical expression for the gradient of the function (as we would do in calculus class). This makes sense for simple functions like \(f(x) = x^2\), but becomes impractical for the more complex functions that would represent a neural network. Solving and storing such an expression explodes with model size.</p> <p>Another approach is numerical differentiation, where we approximate the gradient by altering inputs slightly and observing the change in output. The issue here is a) numerical instability due to approximation errors and b) we would need to compute the gradient for each parameter. We can imagine that for contemporary models with billions of parameters, this is impractical.</p> <p>To address these issues, automatic differentiation (autodiff) is the approach used in practice, which essentially collects information about every operation we perform in the forward pass, and uses this information to compute gradients in the backward pass. We can represent this collection and flow of information as a graph. I’ve seen nodes as functions and edges as values as well as the opposite; both perspectives are valid and the graph is simply a representation of how we organize the information.</p> <p>With autodiff, we compute exact gradients like with symbolic differentiation, but we only need to evaluate each operation once (unlike numerical differentiation), since we store intermediate gradient accumulation values rather than entire expressions. Thus, autodiff is precise and scalable.</p> <pre><code class="language-mermaid">graph TD
-    x[Input x] --&gt; mul1[×]
-    w1[Weight w1] --&gt; mul1
-    b1[Bias b1] --&gt; add1[+]
-    mul1 --&gt; add1
-    add1 --&gt; relu1[ReLU]
-    relu1 --&gt; mul2[×]
-    w2[Weight w2] --&gt; mul2
-    b2[Bias b2] --&gt; add2[+]
-    mul2 --&gt; add2
-    add2 --&gt; loss[Loss]
+</code></pre></div></div> <p>This is a simple toy example, but it illustrates how we might define useful modules like <code class="language-plaintext highlighter-rouge">Linear</code>, <code class="language-plaintext highlighter-rouge">Conv2d</code>, etc. In practice, this could look like a a ResNet module that contains convolutional and lienar submodules, with these submodules containing their own parameters (model weights).</p> <h2 id="part-2-autodiff">Part 2: Autodiff</h2> <p>The next part of the class is all about differentiation: how do we actually compute and store gradients for training?</p> <p>One approach we can take is symbolic differentiation, where we explicitly find the mathematical expression for the gradient of the function (as we would do in calculus class). This makes sense for simple functions like \(f(x) = x^2\), but becomes impractical for the more complex functions that would represent a neural network. Solving and storing such an expression explodes with model size.</p> <p>Another approach is numerical differentiation, where we approximate the gradient by altering inputs slightly and observing the change in output. The issue here is a) numerical instability due to approximation errors and b) we would need to compute the gradient for each parameter. We can imagine that for contemporary models with billions of parameters, this is impractical.</p> <p>To address these issues, automatic differentiation (autodiff) is the approach used in practice, which essentially collects information about every operation we perform in the forward pass, and uses this information to compute gradients in the backward pass. We can represent this collection and flow of information as a graph. I’ve seen nodes as functions and edges as values as well as the opposite; both perspectives are valid and the graph is simply a representation of how we organize the information.</p> <p>With autodiff, we compute exact gradients like with symbolic differentiation, but we only need to evaluate each operation once (unlike numerical differentiation), since we store intermediate gradient accumulation values rather than entire expressions. Thus, autodiff is precise and scalable.</p> <p>To do so in Python, we must override the default behavior of numbers and operators. To this end, we define proxy <code class="language-plaintext highlighter-rouge">Scalar</code> and <code class="language-plaintext highlighter-rouge">ScalarFunction</code> classes that allow us to remember what operators were used on what numbers.</p> <p>Let’s consider an example function f(x, y) = \(x \* y + x\)</p> <pre><code class="language-mermaid">graph TD
+    %% Input variables
+    x[/"x"/]
+    y[/"y"/]
 
-    %% Add gradient flow
-    loss -- ∂L/∂+ --&gt; add2
-    add2 -- ∂L/∂× --&gt; mul2
-    add2 -- ∂L/∂b --&gt; b2
-    mul2 -- ∂L/∂ReLU --&gt; relu1
-    mul2 -- ∂L/∂w --&gt; w2
-    relu1 -- ∂L/∂+ --&gt; add1
-    add1 -- ∂L/∂× --&gt; mul1
-    add1 -- ∂L/∂b --&gt; b1
-    mul1 -- ∂L/∂x --&gt; x
-    mul1 -- ∂L/∂w --&gt; w1
-</code></pre> <pre><code class="language-mermaid">graph LR
-    x[x = 2.0] --&gt;|multiply| z[z = 6.0]
-    y[y = 3.0] --&gt;|multiply| z
-</code></pre> <pre><code class="language-mermaid">graph RL
-    z[z = 6.0] --&gt;|dz/dx = y = 3.0| x[x = 2.0]
-    z --&gt;|dz/dy = x = 2.0| y[y = 3.0]
-</code></pre> <p>To do so in Python, we must override the default behavior of numbers and operators. To this end, we define proxy <code class="language-plaintext highlighter-rouge">Scalar</code> and <code class="language-plaintext highlighter-rouge">ScalarFunction</code> classes that allow us to remember what operators were used on what numbers.</p> <p>As an example, see how we define the multiplication operation. Note the usage of the context (ctx) variable to store values necessary for backpropagation:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Mul</span><span class="p">(</span><span class="n">ScalarFunction</span><span class="p">):</span>
+    %% Operations
+    mul1((Multiply))
+    add((Add))
+
+    %% Edges with values
+    x --&gt; |x| mul1
+    y --&gt; |y| mul1
+    mul1 --&gt; |x*y| add
+    x --&gt; |x| add
+    add --&gt; |"x*y + x"| output[/"output"/]
+
+    %% Styling
+    classDef input fill:#e1f5fe,stroke:#01579b
+    classDef operation fill:#fff3e0,stroke:#ff6f00
+    classDef output fill:#e8f5e9,stroke:#1b5e20
+
+    class x,y input
+    class mul1,add operation
+    class output output
+</code></pre> <pre><code class="language-mermaid">graph TD
+%% Input variables
+x[/"x"/]
+y[/"y"/]
+
+    %% Operations
+    mul1((Multiply))
+    add((Add))
+
+    %% Forward pass edges
+    x --&gt; |"x"| mul1
+    y --&gt; |"y"| mul1
+    mul1 --&gt; |"x*y"| add
+    x --&gt; |"x"| add
+    add --&gt; |"x*y + x"| output[/"output"/]
+
+    %% Backward pass edges (in red)
+    output -.-&gt;|"d_output"| add
+    add -.-&gt;|"d_output"| mul1
+    add -.-&gt;|"d_output"| x
+    mul1 -.-&gt;|"d_output * y"| x
+    mul1 -.-&gt;|"d_output * x"| y
+
+    %% Styling
+    classDef input fill:#e1f5fe,stroke:#01579b
+    classDef operation fill:#fff3e0,stroke:#ff6f00
+    classDef output fill:#e8f5e9,stroke:#1b5e20
+
+    %% Style for forward edges (solid)
+    linkStyle 0,1,2,3,4 stroke:#2196f3,stroke-width:2px
+    %% Style for backward edges (dashed)
+    linkStyle 5,6,7,8,9 stroke:#f44336,stroke-width:2px,stroke-dasharray:3
+
+    class x,y input
+    class mul1,add operation
+    class output output
+</code></pre> <p>As an example, see how we define the multiplication operation. Note the usage of the context (ctx) variable to store values necessary for backpropagation:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Mul</span><span class="p">(</span><span class="n">ScalarFunction</span><span class="p">):</span>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="n">ctx</span><span class="p">.</span><span class="nf">save_for_backward</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
@@ -76,8 +107,7 @@
     No return. Should write to its results to the derivative values of each leaf through `accumulate_derivative`.
 
     </span><span class="sh">"""</span>
-    <span class="c1"># TODO: Implement for Task 1.4.
-</span>    <span class="c1"># Initialize a dictionary to store derivatives for each variable
+    <span class="c1"># Initialize a dictionary to store derivatives for each variable
 </span>    <span class="n">derivatives</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="c1"># Perform topological sort
